@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/index.js" defer></script>
+    <link rel="icon" href="img/hourglass.png">
+    <title>Таймер</title>
+</head>
+<body>
+    <main>
+        <div class="counter">
+            <audio class="timer-end" src="audio/timerend.mp3"></audio>
+            <audio class="plus-sec" src="audio/plussec.mp3"></audio>
+            <audio class="btnclick" src="audio/btnclick.mp3"></audio>
+            <div class="time-set link-item">Время не задано<div class="br"></div> <b>ЛКМ</b> - прибавить <br> <b>ПКМ</b> - отнять</div>
+            <div class="container">
+                <div class="hours link-item">0 ч</div>
+                <div class="minutes link-item">0 м</div>
+                <div class="seconds link-item">0 c</div>
+            </div>
+            <div class="buttons">
+                <div class="buttonStart link-item button"><a href="#" >Запустить</a></div>
+                <div class="buttonStop hidden link-item button"><a href="#">Остановить</a></div>
+                <div class="buttonReset link-item button"><a href="#" >Сброс</a></div>
+            </div>
+            <div class="btn-container">
+                <div class="btn-plus">
+                    <div class="buttonPlusSeconds button"><a href="#" >+сек</a></div>
+                    <div class="buttonPlusMinutes button"><a href="#" >+мин</a></div>
+                    <div class="buttonPlusHours button"><a href="#" >+час</a></div>
+                </div>
+                <div class="btn-minus">
+                    <div class="buttonMinusSeconds button"><a href="#" >-сек</a></div>
+                    <div class="buttonMinusMinutes button"><a href="#" >-мин</a></div>
+                    <div class="buttonMinusHours button"><a href="#" >-час</a></div>
+                </div>
+            </div>
+        </div>
+        <div class="cursor-outline"></div>
+        <div class="cursor-dot"></div>
+    </main>
+</body>
+</html>
