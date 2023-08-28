@@ -42,6 +42,33 @@ document.addEventListener('mouseenter', () => {
     }, {duration: 1000, fill: 'forwards'})
 })
 
+function secondsAnim () {
+    seconds.animate({
+        color: '#5873cc',
+    },{duration: 100, fill: 'forwards'})
+    seconds.animate({
+        color: '#000',
+    },{duration: 1000, fill: 'forwards'})
+}
+
+function minutesAnim () {
+    minutes.animate({
+        color: '#5873cc',
+    },{duration: 100, fill: 'forwards'})
+    minutes.animate({
+        color: '#000',
+    },{duration: 1000, fill: 'forwards'})
+}
+
+function hoursAnim () {
+    hours.animate({
+        color: '#5873cc',
+    },{duration: 100, fill: 'forwards'})
+    hours.animate({
+        color: '#000',
+    },{duration: 1000, fill: 'forwards'})
+}
+
 function timerEndPlay () {
     timerEnd.play()
     timerEnd.currentTime = 0
@@ -71,7 +98,6 @@ links.forEach(link => {
             width: '80px',
             height: '80px'
         }, {duration: 400, fill: 'forwards'})
-
         cursorDot.animate({
             opacity: '0',
         }, {duration:200, fill: 'forwards'})
@@ -84,7 +110,6 @@ links.forEach(link => {
             width: '40px',
             height: '40px'
         }, {duration: 200, fill: 'forwards'})
-
             cursorDot.animate({
             opacity: '1',
         }, {duration:200, fill: 'forwards'})
@@ -226,42 +251,54 @@ function timeSetAnimate () {
 }
 
 seconds.addEventListener('click', () => {
+    secondsAnim()
     animateCursorClick()
     incrementSeconds()
     plusSecPlay()
 })
 
 seconds.addEventListener('contextmenu', (e) => {
-    animateCursorContext()
     e.preventDefault()
-    decrementSeconds()
-    plusSecPlay()
+    if (secondsValue > 0 || minutesValue > 0 || hoursValue > 0) {
+        secondsAnim()
+        animateCursorContext()
+        decrementSeconds()
+        plusSecPlay()
+    }
 })
 
 minutes.addEventListener('click', () => {
+    minutesAnim()
     animateCursorClick()
     incrementMinutes()
     plusSecPlay()
 })
 
 minutes.addEventListener('contextmenu', (e) => {
-    animateCursorContext()
     e.preventDefault()
-    decrementMinutes()
-    plusSecPlay()
+    if (minutesValue > 0 || hoursValue > 0) {
+        minutesAnim()
+        animateCursorContext()
+        decrementMinutes()
+        plusSecPlay()
+    }
 })
 
 hours.addEventListener('click', () => {
+    hoursAnim()
     animateCursorClick()
     incrementHours()
     plusSecPlay()
 })
 
 hours.addEventListener('contextmenu', (e) => {
-    animateCursorContext()
     e.preventDefault()
-    decrementHours()
-    plusSecPlay()
+    if (hoursValue > 0) {
+        hoursAnim()
+        animateCursorContext()
+        decrementHours()
+        plusSecPlay()
+    }
 })
 
 buttonPlusSeconds.addEventListener('click', incrementSeconds)
@@ -302,6 +339,9 @@ buttonStop.addEventListener('click', () => {
 });
 
 buttonReset.addEventListener('click', ()=> {
+    secondsAnim()
+    minutesAnim()
+    hoursAnim()
     clearInterval(interval);
     buttonStop.classList.add('hidden')
     buttonStart.classList.remove('hidden')
