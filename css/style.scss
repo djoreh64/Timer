@@ -54,7 +54,7 @@ body {
     pointer-events: none;
     transform: translate(-50%, -50%);
 
-    @media (max-width: 1366px) {
+    @media (max-width: 1365px) {
         display: none;
     }
 }
@@ -129,7 +129,7 @@ button {
                 background-color: #dadada;
             }
 
-            @media (max-width: 450px) {
+            @media (max-width: 1365px) {
                 display: flex;
             }
         }
