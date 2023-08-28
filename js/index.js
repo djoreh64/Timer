@@ -42,7 +42,7 @@ document.addEventListener('mouseenter', () => {
     }, {duration: 1000, fill: 'forwards'})
 })
 
-function secondsAnim () {
+function secondsAnim() {
     seconds.animate({
         color: '#5873cc',
     },{duration: 100, fill: 'forwards'})
@@ -51,7 +51,7 @@ function secondsAnim () {
     },{duration: 1000, fill: 'forwards'})
 }
 
-function minutesAnim () {
+function minutesAnim() {
     minutes.animate({
         color: '#5873cc',
     },{duration: 100, fill: 'forwards'})
@@ -60,7 +60,7 @@ function minutesAnim () {
     },{duration: 1000, fill: 'forwards'})
 }
 
-function hoursAnim () {
+function hoursAnim() {
     hours.animate({
         color: '#5873cc',
     },{duration: 100, fill: 'forwards'})
@@ -69,88 +69,43 @@ function hoursAnim () {
     },{duration: 1000, fill: 'forwards'})
 }
 
-function timerEndPlay () {
+function timerEndPlay() {
     timerEnd.play()
     timerEnd.currentTime = 0
 }
 
-function plusSecPlay () {
+function plusSecPlay() {
     plusSec.play()
     plusSec.currentTime = 0
 }
 
-function buttonPlay () {
+function buttonPlay() {
     buttonclick.play()
     buttonclick.currentTime = 0
 }
 
-buttons.forEach(button => {
-    button.addEventListener('click', () => {
-        buttonPlay()
-    })
-})
-
-links.forEach(link => {
-    link.addEventListener('mouseenter', () => {
-        cursorOutline.animate({
-            border: '2px solid #000',
-            transform: 'translate(-50%, -50%)',
-            width: '80px',
-            height: '80px'
-        }, {duration: 400, fill: 'forwards'})
-        cursorDot.animate({
-            opacity: '0',
-        }, {duration:200, fill: 'forwards'})
-    })
-
-    link.addEventListener('mouseleave', () => {
-        cursorOutline.animate({
-            border: '2px solid #fff',
-            transform: 'translate(-50%, -50%)',
-            width: '40px',
-            height: '40px'
-        }, {duration: 200, fill: 'forwards'})
-            cursorDot.animate({
-            opacity: '1',
-        }, {duration:200, fill: 'forwards'})
-    })
-})
-
-document.addEventListener('mousemove', (e) => {
-    let x = e.clientX;
-    let y = e.clientY
-
-    cursorDot.style.top = `${y}px`
-    cursorDot.style.left = `${x}px`
-
-    cursorOutline.animate({
-        top: `${y}px`,
-        left: `${x}px`
-    }, {duration: 1000, fill: 'forwards'})
-})
-
-function animateCursorClick () {
-    cursorOutline.animate({
-        width: '140px',
-        height: '140px'
-    }, {duration: 200, fill: 'forwards'})
-
-    cursorOutline.animate({
-        width: '80px',
-        height: '80px'
-    }, {duration: 600, fill: 'forwards'})
-}
-
-function animateCursorContext () {
+function animateCursorClick() {
     cursorOutline.animate({
         width: '40px',
         height: '40px'
     }, {duration: 200, fill: 'forwards'})
 
     cursorOutline.animate({
-        width: '80px',
-        height: '80px'
-    }, {duration: 600, fill: 'forwards'})
+        width: '10px',
+        height: '10px'
+    }, {duration: 400, fill: 'forwards'})
+}
+
+function animateCursorContext() {
+    cursorOutline.animate({
+        width: '3px',
+        height: '3px'
+    }, {duration: 100, fill: 'forwards'})
+
+    cursorOutline.animate({
+        width: '10px',
+        height: '10px'
+    }, {duration: 200, fill: 'forwards'})
 }
 
 function updateSeconds() {
@@ -239,7 +194,7 @@ function decrementHours() {
     } 
 }
 
-function timeSetAnimate () {
+function timeSetAnimate() {
     timeSet.animate({
         transform: 'translateX(0%)',
         display: 'block' 
@@ -249,64 +204,6 @@ function timeSetAnimate () {
         display: 'none'
     }, {duration: 300, delay: 2000, fill: 'forwards'})
 }
-
-seconds.addEventListener('click', () => {
-    secondsAnim()
-    animateCursorClick()
-    incrementSeconds()
-    plusSecPlay()
-})
-
-seconds.addEventListener('contextmenu', (e) => {
-    e.preventDefault()
-    if (secondsValue > 0 || minutesValue > 0 || hoursValue > 0) {
-        secondsAnim()
-        animateCursorContext()
-        decrementSeconds()
-        plusSecPlay()
-    }
-})
-
-minutes.addEventListener('click', () => {
-    minutesAnim()
-    animateCursorClick()
-    incrementMinutes()
-    plusSecPlay()
-})
-
-minutes.addEventListener('contextmenu', (e) => {
-    e.preventDefault()
-    if (minutesValue > 0 || hoursValue > 0) {
-        minutesAnim()
-        animateCursorContext()
-        decrementMinutes()
-        plusSecPlay()
-    }
-})
-
-hours.addEventListener('click', () => {
-    hoursAnim()
-    animateCursorClick()
-    incrementHours()
-    plusSecPlay()
-})
-
-hours.addEventListener('contextmenu', (e) => {
-    e.preventDefault()
-    if (hoursValue > 0) {
-        hoursAnim()
-        animateCursorContext()
-        decrementHours()
-        plusSecPlay()
-    }
-})
-
-buttonPlusSeconds.addEventListener('click', incrementSeconds)
-buttonPlusMinutes.addEventListener('click', incrementMinutes)
-buttonPlusHours.addEventListener('click', incrementHours)
-buttonMinusSeconds.addEventListener('click', decrementSeconds)
-buttonMinusMinutes.addEventListener('click', decrementMinutes)
-buttonMinusHours.addEventListener('click', decrementHours)
 
 function startTimer() {
     if (secondsValue === 0 && minutesValue === 0 && hoursValue === 0) {
@@ -320,6 +217,64 @@ function startTimer() {
     }
     decrementSeconds();
 }
+
+seconds.addEventListener('click', () => {
+    secondsAnim();
+    animateCursorClick();
+    incrementSeconds();
+    plusSecPlay();
+});
+
+seconds.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+    if (secondsValue > 0 || minutesValue > 0 || hoursValue > 0) {
+        secondsAnim();
+        animateCursorContext();
+        decrementSeconds();
+        plusSecPlay();
+    }
+});
+
+minutes.addEventListener('click', () => {
+    minutesAnim();
+    animateCursorClick();
+    incrementMinutes();
+    plusSecPlay();
+});
+
+minutes.addEventListener('contextmenu', (e) => {
+    e.preventDefault()
+    if (minutesValue > 0 || hoursValue > 0) {
+        minutesAnim();
+        animateCursorContext();
+        decrementMinutes();
+        plusSecPlay();
+    }
+});
+
+hours.addEventListener('click', () => {
+    hoursAnim();
+    animateCursorClick();
+    incrementHours();
+    plusSecPlay();
+});
+
+hours.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+    if (hoursValue > 0) {
+        hoursAnim();
+        animateCursorContext();
+        decrementHours();
+        plusSecPlay();
+    }
+});
+
+buttonPlusSeconds.addEventListener('click', incrementSeconds)
+buttonPlusMinutes.addEventListener('click', incrementMinutes)
+buttonPlusHours.addEventListener('click', incrementHours)
+buttonMinusSeconds.addEventListener('click', decrementSeconds)
+buttonMinusMinutes.addEventListener('click', decrementMinutes)
+buttonMinusHours.addEventListener('click', decrementHours)
 
 buttonStart.addEventListener('click', () => {
     clearInterval(interval);
@@ -351,4 +306,49 @@ buttonReset.addEventListener('click', ()=> {
     updateSeconds();
     updateMinutes();
     updateHours();
+})
+
+buttons.forEach(button => {
+    button.addEventListener('click', () => {
+        buttonPlay()
+    })
+})
+
+links.forEach(link => {
+    link.addEventListener('mouseenter', () => {
+        cursorOutline.animate({
+            border: '2px solid #000',
+            transform: 'translate(-50%, -50%)',
+            width: '10px',
+            height: '10px'
+        }, {duration: 400, fill: 'forwards'})
+        cursorDot.animate({
+            opacity: '0',
+        }, {duration:200, fill: 'forwards'})
+    })
+
+    link.addEventListener('mouseleave', () => {
+        cursorOutline.animate({
+            border: '2px solid #fff',
+            transform: 'translate(-50%, -50%)',
+            width: '40px',
+            height: '40px'
+        }, {duration: 200, fill: 'forwards'})
+            cursorDot.animate({
+            opacity: '1',
+        }, {duration:200, fill: 'forwards'})
+    })
+})
+
+document.addEventListener('mousemove', (e) => {
+    let x = e.clientX;
+    let y = e.clientY
+
+    cursorDot.style.top = `${y}px`
+    cursorDot.style.left = `${x}px`
+
+    cursorOutline.animate({
+        top: `${y}px`,
+        left: `${x}px`
+    }, {duration: 1000, fill: 'forwards'})
 })
